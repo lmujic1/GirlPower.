@@ -11,7 +11,7 @@ Tema: Upravljanje centrom za kozmetiku
 Našli ste se u situaciji da u toku dana niste stigli pozvati salon i zakazati termin kod kozmetičarke? <br />
 Desilo vam se da ste zaboravili ili zakasnili na isti? <br />
 Željeli biste ste da isprobate novi tretman, ali o svojstvima istog ne znate mnogo? <br />
-Ako je „DA“ odgovor na barem jedno od navedenih pitanja, onda je _GirlPower_ je prava stvar za vas.<br />
+Ako je „DA“ odgovor na barem jedno od navedenih pitanja, onda je _GirlPower_ prava stvar za vas.<br />
 <br />
 **GirlPower** je aplikacija koja omogućava:<br />
 *	brzo i jednostavno zakazivanje termina,<br />
