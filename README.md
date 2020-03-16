@@ -2,6 +2,7 @@
 Tema: Upravljanje centrom za kozmetiku
 
 # GRLPWR – Girl Power
+![](https://i.ebayimg.com/images/g/NBQAAOSwAYlcrJOz/s-l1600.jpg)
 
 ## Članovi tima: 
 **Anisa Mahmutović, Merima Murtić, Lejla Mujić**
