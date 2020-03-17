@@ -29,6 +29,7 @@ Ova aplikacija pomoći će vama i vašoj kozmetičarki da bolje organizujete vri
 **Klijenti** – korisnici aplikacije
 *	mogućnost prijave kao neregistrovani korisnik (guest) 
 *	mogućnost registracije <br />
+
 ***Guest klijenti***:  
 *	mogućnost pregled liste tretmana
 *	mogućnost uvida u cijene tretmana
@@ -36,6 +37,7 @@ Ova aplikacija pomoći će vama i vašoj kozmetičarki da bolje organizujete vri
 *	mogućnost uvida u detaljniji opis pojedinih tretmana 
 *	mogućnost pristupa rubrici „savjeti“. 
 Klijent može odabrati i opciju registrovanja na početnoj formi unoseći svoje ime, prezime, šifru, jedinstveno korisničko ime i e-mail. Nakon potvrde validnosti mail-a korisnik postaje registrovan i omogućena mu je prijava. <br />
+
 ***Prijavljeni klijenti***:
 *	mogućnost uvida u slobodne termine
 *	mogućnost zakazivanja, odgađanja ili otkazivanja termina
