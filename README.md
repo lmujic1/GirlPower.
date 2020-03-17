@@ -55,7 +55,7 @@ Klijent može odabrati i opciju registrovanja na početnoj formi unoseći svoje 
 *	mogućnost održavanja i upravljanja pristupa sistemu 
 *	mogućnost dodavanja, oduzimanja i ažuriranja korisničkih naloga
 
-***Uposlenici*** salona su takođe korisnici aplikacije.
+**Uposlenici** salona su takođe korisnici aplikacije.
 *	mogućnost prijave na sistem kao „uposlenik“
 *	mogućnost uvida u raspored
 *	mogućnost izmjene rasporeda
