@@ -47,7 +47,7 @@ Klijent može odabrati i opciju registrovanja na početnoj formi unoseći svoje 
 *	mogućnost primanja notifikacije o ostvarenom popustu 
 *	mogućnost postavljanja pitanja, pružanja sugestija, pohvala ili kritika 
 *	mogućnost slanja poruke koja će biti vidljiva svim uposlenicima
-*	mogućnost prihvaćanja ponude da tretman izvrši neka druga osoba (ukoliko je osoba kod koje su zakazali termin imala hitan slučaj)
+*	mogućnost prihvatanja ponude da tretman izvrši neka druga osoba (ukoliko je osoba kod koje su zakazali termin imala hitan slučaj)
 *	mogućnost osvajanja popusta za svaki tretman odgođen od strane uposlenika
 
 **Administrator**  
@@ -65,7 +65,7 @@ Klijent može odabrati i opciju registrovanja na početnoj formi unoseći svoje 
 
 **Akteri**
 
-**Neregistrovani klijent** – ima mogućnost pristupa osnovnim funkcionalnostima aplikacije, kao što je npr. pregled ponude tretmana <br />
-**Registrovani klijent** – može sve što i neregistrovani korisnik, uz dodatne mogućnosti zakazivanja termina, mogućnost ostvarivanja popusta itd. <br />
-**Uposlenik** – ima mogućnost kontrole rasporeda termina <br />
+**Neregistrovani klijent** - ima mogućnost pristupa osnovnim funkcionalnostima aplikacije, kao što je npr. pregled ponude tretmana <br />
+**Registrovani klijent** - može sve što i neregistrovani korisnik, uz dodatne mogućnosti zakazivanja termina, mogućnost ostvarivanja popusta itd. <br />
+**Uposlenik** - ima mogućnost kontrole rasporeda termina <br />
 **Administrator** - nadgleda sistem 
