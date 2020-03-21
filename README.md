@@ -38,7 +38,7 @@ Ova aplikacija pomoći će vama i vašoj kozmetičarki da bolje organizujete vri
 *	mogućnost pristupa rubrici „savjeti“. <br />
 Klijent može odabrati i opciju registrovanja na početnoj formi unoseći svoje ime, prezime, šifru, jedinstveno korisničko ime i e-mail. Nakon potvrde validnosti mail-a korisnik postaje registrovan i omogućena mu je prijava. <br />
 
-***Prijavljeni klijenti***:
+***Registrovani klijenti***:
 *	mogućnost uvida u slobodne termine
 *	mogućnost zakazivanja, odgađanja ili otkazivanja termina
 *	mogućnost uvida u izvršene tretmane. 
