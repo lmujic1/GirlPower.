@@ -33,7 +33,6 @@ Ova aplikacija pomoći će vama i vašoj kozmetičarki da bolje organizujete vri
 ***Guest klijenti***:  
 *	mogućnost pregled liste tretmana
 *	mogućnost uvida u cijene tretmana
-*	mogućnost pregleda liste potencijalnih osoba koji će vršiti tretman
 *	mogućnost uvida u detaljniji opis pojedinih tretmana 
 *	mogućnost pristupa rubrici „savjeti“. <br />
 Klijent može odabrati i opciju registrovanja na početnoj formi unoseći svoje ime, prezime, šifru, jedinstveno korisničko ime i e-mail. Nakon potvrde validnosti mail-a korisnik postaje registrovan i omogućena mu je prijava. <br />
@@ -49,6 +48,7 @@ Klijent može odabrati i opciju registrovanja na početnoj formi unoseći svoje 
 *	mogućnost slanja poruke koja će biti vidljiva svim uposlenicima
 *	mogućnost prihvatanja ponude da tretman izvrši neka druga osoba (ukoliko je osoba kod koje su zakazali termin imala hitan slučaj)
 *	mogućnost osvajanja popusta za svaki tretman odgođen od strane uposlenika
+*	mogućnost pregleda liste potencijalnih osoba koje će vršiti tretman
 
 **Administrator**  
 *	mogućnost održavanja i dodavanja novih funkcionalnosti koje pruža salon 
