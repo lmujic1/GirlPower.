@@ -66,7 +66,7 @@ $.validator.addMethod( "accept", function( value, element, param ) {
 				.replace( /,/g, "|" )
 				.replace( /\/\*/g, "/.*" );
 
-		// Check if the element has a FileList before checking each file
+		// Check if the element has a FileICollection before checking each file
 		if ( element.files && element.files.length ) {
 			regex = new RegExp( ".?(" + typeParam + ")$", "i" );
 			for ( i = 0; i < element.files.length; i++ ) {
@@ -81,7 +81,7 @@ $.validator.addMethod( "accept", function( value, element, param ) {
 	}
 
 	// Either return true because we've validated each file, or because the
-	// browser does not support element.files and the FileList feature
+	// browser does not support element.files and the FileICollection feature
 	return true;
 }, $.validator.format( "Please enter a value with a valid mimetype." ) );
 

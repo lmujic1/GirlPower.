@@ -262,7 +262,7 @@ input[type="date"],
 input[type="time"],
 input[type="datetime-local"],
 input[type="month"] {
-  -webkit-appearance: listbox;
+  -webkit-appearance: ICollectionbox;
 }
 
 textarea {
@@ -317,7 +317,7 @@ output {
 }
 
 summary {
-  display: list-item;
+  display: ICollection-item;
   cursor: pointer;
 }
 

@@ -443,7 +443,7 @@
 
         if (input) {
           if (input.type === 'radio') {
-            if (input.checked && this._element.classList.contains(ClassName$1.ACTIVE)) {
+            if (input.checked && this._element.classICollection.contains(ClassName$1.ACTIVE)) {
               triggerChangeEvent = false;
             } else {
               var activeElement = rootElement.querySelector(Selector$1.ACTIVE);
@@ -455,11 +455,11 @@
           }
 
           if (triggerChangeEvent) {
-            if (input.hasAttribute('disabled') || rootElement.hasAttribute('disabled') || input.classList.contains('disabled') || rootElement.classList.contains('disabled')) {
+            if (input.hasAttribute('disabled') || rootElement.hasAttribute('disabled') || input.classICollection.contains('disabled') || rootElement.classICollection.contains('disabled')) {
               return;
             }
 
-            input.checked = !this._element.classList.contains(ClassName$1.ACTIVE);
+            input.checked = !this._element.classICollection.contains(ClassName$1.ACTIVE);
             $(input).trigger('change');
           }
 
@@ -469,7 +469,7 @@
       }
 
       if (addAriaPressed) {
-        this._element.setAttribute('aria-pressed', !this._element.classList.contains(ClassName$1.ACTIVE));
+        this._element.setAttribute('aria-pressed', !this._element.classICollection.contains(ClassName$1.ACTIVE));
       }
 
       if (triggerChangeEvent) {
@@ -647,7 +647,7 @@
       this._touchSupported = 'ontouchstart' in document.documentElement || navigator.maxTouchPoints > 0;
       this._pointerEvent = Boolean(window.PointerEvent || window.MSPointerEvent);
 
-      this._addEventListeners();
+      this._addEventICollectioneners();
     } // Getters
 
 
@@ -771,7 +771,7 @@
       }
     };
 
-    _proto._addEventListeners = function _addEventListeners() {
+    _proto._addEventICollectioneners = function _addEventICollectioneners() {
       var _this2 = this;
 
       if (this._config.keyboard) {
@@ -789,11 +789,11 @@
       }
 
       if (this._config.touch) {
-        this._addTouchEventListeners();
+        this._addTouchEventICollectioneners();
       }
     };
 
-    _proto._addTouchEventListeners = function _addTouchEventListeners() {
+    _proto._addTouchEventICollectioneners = function _addTouchEventICollectioneners() {
       var _this3 = this;
 
       if (!this._touchSupported) {
@@ -828,7 +828,7 @@
           // If it's a touch-enabled device, mouseenter/leave are fired as
           // part of the mouse compatibility events on first tap - the carousel
           // would stop cycling until user tapped out of it;
-          // here, we listen for touchend, explicitly pause the carousel
+          // here, we ICollectionen for touchend, explicitly pause the carousel
           // (as if it's the second time we tap on it, mouseenter compat event
           // is NOT fired) and after a timeout (to allow for mouse compatibility
           // events to fire) we explicitly restart cycling
@@ -856,7 +856,7 @@
           return end(event);
         });
 
-        this._element.classList.add(ClassName$2.POINTER_EVENT);
+        this._element.classICollection.add(ClassName$2.POINTER_EVENT);
       } else {
         $(this._element).on(Event$2.TOUCHSTART, function (event) {
           return start(event);
@@ -1197,10 +1197,10 @@
       this._element = element;
       this._config = this._getConfig(config);
       this._triggerArray = [].slice.call(document.querySelectorAll("[data-toggle=\"collapse\"][href=\"#" + element.id + "\"]," + ("[data-toggle=\"collapse\"][data-target=\"#" + element.id + "\"]")));
-      var toggleList = [].slice.call(document.querySelectorAll(Selector$3.DATA_TOGGLE));
+      var toggleICollection = [].slice.call(document.querySelectorAll(Selector$3.DATA_TOGGLE));
 
-      for (var i = 0, len = toggleList.length; i < len; i++) {
-        var elem = toggleList[i];
+      for (var i = 0, len = toggleICollection.length; i < len; i++) {
+        var elem = toggleICollection[i];
         var selector = Util.getSelectorFromElement(elem);
         var filterElement = [].slice.call(document.querySelectorAll(selector)).filter(function (foundElem) {
           return foundElem === element;
@@ -1252,7 +1252,7 @@
             return elem.getAttribute('data-parent') === _this._config.parent;
           }
 
-          return elem.classList.contains(ClassName$3.COLLAPSE);
+          return elem.classICollection.contains(ClassName$3.COLLAPSE);
         });
 
         if (actives.length === 0) {
@@ -2363,7 +2363,7 @@
   }
 
   /**
-   * Loop trough the list of modifiers and run them in order,
+   * Loop trough the ICollection of modifiers and run them in order,
    * each of them will then edit the data object.
    * @method
    * @memberof Popper.Utils
@@ -2503,7 +2503,7 @@
       this.popper.style[getSupportedPropertyName('transform')] = '';
     }
 
-    this.disableEventListeners();
+    this.disableEventICollectioneners();
 
     // remove the popper if user explicity asked for the deletion on destroy
     // do not use `remove` because IE11 doesn't support it
@@ -2526,7 +2526,7 @@
   function attachToScrollParents(scrollParent, event, callback, scrollParents) {
     var isBody = scrollParent.nodeName === 'BODY';
     var target = isBody ? scrollParent.ownerDocument.defaultView : scrollParent;
-    target.addEventListener(event, callback, { passive: true });
+    target.addEventICollectionener(event, callback, { passive: true });
 
     if (!isBody) {
       attachToScrollParents(getScrollParent(target.parentNode), event, callback, scrollParents);
@@ -2535,17 +2535,17 @@
   }
 
   /**
-   * Setup needed event listeners used to update the popper position
+   * Setup needed event ICollectioneners used to update the popper position
    * @method
    * @memberof Popper.Utils
    * @private
    */
-  function setupEventListeners(reference, options, state, updateBound) {
-    // Resize event listener on window
+  function setupEventICollectioneners(reference, options, state, updateBound) {
+    // Resize event ICollectionener on window
     state.updateBound = updateBound;
-    getWindow(reference).addEventListener('resize', state.updateBound, { passive: true });
+    getWindow(reference).addEventICollectionener('resize', state.updateBound, { passive: true });
 
-    // Scroll event listener on scroll parents
+    // Scroll event ICollectionener on scroll parents
     var scrollElement = getScrollParent(reference);
     attachToScrollParents(scrollElement, 'scroll', state.updateBound, state.scrollParents);
     state.scrollElement = scrollElement;
@@ -2560,25 +2560,25 @@
    * @method
    * @memberof Popper
    */
-  function enableEventListeners() {
+  function enableEventICollectioneners() {
     if (!this.state.eventsEnabled) {
-      this.state = setupEventListeners(this.reference, this.options, this.state, this.scheduleUpdate);
+      this.state = setupEventICollectioneners(this.reference, this.options, this.state, this.scheduleUpdate);
     }
   }
 
   /**
-   * Remove event listeners used to update the popper position
+   * Remove event ICollectioneners used to update the popper position
    * @method
    * @memberof Popper.Utils
    * @private
    */
-  function removeEventListeners(reference, state) {
-    // Remove resize event listener on window
-    getWindow(reference).removeEventListener('resize', state.updateBound);
+  function removeEventICollectioneners(reference, state) {
+    // Remove resize event ICollectionener on window
+    getWindow(reference).removeEventICollectionener('resize', state.updateBound);
 
-    // Remove scroll event listener on scroll parents
+    // Remove scroll event ICollectionener on scroll parents
     state.scrollParents.forEach(function (target) {
-      target.removeEventListener('scroll', state.updateBound);
+      target.removeEventICollectionener('scroll', state.updateBound);
     });
 
     // Reset state
@@ -2596,10 +2596,10 @@
    * @method
    * @memberof Popper
    */
-  function disableEventListeners() {
+  function disableEventICollectioneners() {
     if (this.state.eventsEnabled) {
       cancelAnimationFrame(this.scheduleUpdate);
-      this.state = removeEventListeners(this.reference, this.state);
+      this.state = removeEventICollectioneners(this.reference, this.state);
     }
   }
 
@@ -2620,7 +2620,7 @@
    * @memberof Popper.Utils
    * @argument {Element} element - Element to apply the style to
    * @argument {Object} styles
-   * Object with a list of properties and values which will be applied to the element
+   * Object with a ICollection of properties and values which will be applied to the element
    */
   function setStyles(element, styles) {
     Object.keys(styles).forEach(function (prop) {
@@ -2639,7 +2639,7 @@
    * @memberof Popper.Utils
    * @argument {Element} element - Element to apply the attributes to
    * @argument {Object} styles
-   * Object with a list of properties and values which will be applied to the element
+   * Object with a ICollection of properties and values which will be applied to the element
    */
   function setAttributes(element, attributes) {
     Object.keys(attributes).forEach(function (prop) {
@@ -2656,8 +2656,8 @@
    * @function
    * @memberof Modifiers
    * @argument {Object} data - The data object generated by `update` method
-   * @argument {Object} data.styles - List of style properties - values to apply to popper element
-   * @argument {Object} data.attributes - List of attribute properties - values to apply to popper element
+   * @argument {Object} data.styles - ICollection of style properties - values to apply to popper element
+   * @argument {Object} data.attributes - ICollection of attribute properties - values to apply to popper element
    * @argument {Object} options - Modifiers configuration and options
    * @returns {Object} The same data object
    */
@@ -2859,10 +2859,10 @@
 
   /**
    * Helper used to know if the given modifier depends from another one.<br />
-   * It checks if the needed modifier is listed and enabled.
+   * It checks if the needed modifier is ICollectioned and enabled.
    * @method
    * @memberof Popper.Utils
-   * @param {Array} modifiers - list of modifiers
+   * @param {Array} modifiers - ICollection of modifiers
    * @param {String} requestingName - name of requesting modifier
    * @param {String} requestedName - name of requested modifier
    * @returns {Boolean}
@@ -2984,7 +2984,7 @@
   }
 
   /**
-   * List of accepted placements to use as values of the `placement` option.<br />
+   * ICollection of accepted placements to use as values of the `placement` option.<br />
    * Valid placements are:
    * - `auto`
    * - `top`
@@ -2992,7 +2992,7 @@
    * - `bottom`
    * - `left`
    *
-   * Each placement can have a variation from this list:
+   * Each placement can have a variation from this ICollection:
    * - `-start`
    * - `-end`
    *
@@ -3234,7 +3234,7 @@
     // will use the other one
     var useHeight = ['right', 'left'].indexOf(basePlacement) !== -1;
 
-    // Split the offset string to obtain a list of values and operands
+    // Split the offset string to obtain a ICollection of values and operands
     // The regex addresses values with the plus or minus sign in front (+10, -20, etc)
     var fragments = offset.split(/(\+|\-)/).map(function (frag) {
       return frag.trim();
@@ -3250,7 +3250,7 @@
       console.warn('Offsets separated by white space(s) are deprecated, use a comma (,) instead.');
     }
 
-    // If divider is found, we divide the list of values and operands to divide
+    // If divider is found, we divide the ICollection of values and operands to divide
     // them by ofset X and Y.
     var splitRegex = /\s*,\s*|\s+/;
     var ops = divider !== -1 ? [fragments.slice(0, divider).concat([fragments[divider].split(splitRegex)[0]]), [fragments[divider].split(splitRegex)[1]].concat(fragments.slice(divider + 1))] : [fragments];
@@ -3699,7 +3699,7 @@
       /**
        * @prop {String|Array} behavior='flip'
        * The behavior used to change the popper's placement. It can be one of
-       * `flip`, `clockwise`, `counterclockwise` or an array with a list of valid
+       * `flip`, `clockwise`, `counterclockwise` or an array with a ICollection of valid
        * placements (with optional variations)
        */
       behavior: 'flip',
@@ -3908,7 +3908,7 @@
     onUpdate: function onUpdate() {},
 
     /**
-     * List of modifiers used to modify the offsets before they are applied to the popper.
+     * ICollection of modifiers used to modify the offsets before they are applied to the popper.
      * They provide most of the functionalities of Popper.js.
      * @prop {modifiers}
      */
@@ -3969,7 +3969,7 @@
         _this.options.modifiers[name] = _extends({}, Popper.Defaults.modifiers[name] || {}, options.modifiers ? options.modifiers[name] : {});
       });
 
-      // Refactoring modifiers' list (Object => Array)
+      // Refactoring modifiers' ICollection (Object => Array)
       this.modifiers = Object.keys(this.options.modifiers).map(function (name) {
         return _extends({
           name: name
@@ -3995,14 +3995,14 @@
 
       var eventsEnabled = this.options.eventsEnabled;
       if (eventsEnabled) {
-        // setup event listeners, they will take care of update the position in specific situations
-        this.enableEventListeners();
+        // setup event ICollectioneners, they will take care of update the position in specific situations
+        this.enableEventICollectioneners();
       }
 
       this.state.eventsEnabled = eventsEnabled;
     }
 
-    // We can't use class properties because they don't get listed in the
+    // We can't use class properties because they don't get ICollectioned in the
     // class prototype and break stuff like Sinon stubs
 
 
@@ -4017,14 +4017,14 @@
         return destroy.call(this);
       }
     }, {
-      key: 'enableEventListeners',
-      value: function enableEventListeners$$1() {
-        return enableEventListeners.call(this);
+      key: 'enableEventICollectioneners',
+      value: function enableEventICollectioneners$$1() {
+        return enableEventICollectioneners.call(this);
       }
     }, {
-      key: 'disableEventListeners',
-      value: function disableEventListeners$$1() {
-        return disableEventListeners.call(this);
+      key: 'disableEventICollectioneners',
+      value: function disableEventICollectioneners$$1() {
+        return disableEventICollectioneners.call(this);
       }
 
       /**
@@ -4173,7 +4173,7 @@
       this._menu = this._getMenuElement();
       this._inNavbar = this._detectNavbar();
 
-      this._addEventListeners();
+      this._addEventICollectioneners();
     } // Getters
 
 
@@ -4236,7 +4236,7 @@
 
         this._popper = new Popper(referenceElement, this._menu, this._getPopperConfig());
       } // If this is a touch-enabled device we add extra
-      // empty mouseover listeners to the body's immediate children;
+      // empty mouseover ICollectioneners to the body's immediate children;
       // only needed because of broken event delegation on iOS
       // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
 
@@ -4319,7 +4319,7 @@
     } // Private
     ;
 
-    _proto._addEventListeners = function _addEventListeners() {
+    _proto._addEventICollectioneners = function _addEventICollectioneners() {
       var _this = this;
 
       $(this._element).on(Event$4.CLICK, function (event) {
@@ -4475,7 +4475,7 @@
         if (hideEvent.isDefaultPrevented()) {
           continue;
         } // If this is a touch-enabled device we remove the extra
-        // empty mouseover listeners we added for iOS support
+        // empty mouseover ICollectioneners we added for iOS support
 
 
         if ('ontouchstart' in document.documentElement) {
@@ -4948,7 +4948,7 @@
         this._backdrop.className = ClassName$5.BACKDROP;
 
         if (animate) {
-          this._backdrop.classList.add(animate);
+          this._backdrop.classICollection.add(animate);
         }
 
         $(this._backdrop).appendTo(document.body);
@@ -5196,7 +5196,7 @@
    */
   var uriAttrs = ['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href'];
   var ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i;
-  var DefaultWhitelist = {
+  var DefaultWhiteICollection = {
     // Global attributes allowed on any supplied element below.
     '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
     a: ['target', 'href', 'title', 'rel'],
@@ -5244,10 +5244,10 @@
 
   var DATA_URL_PATTERN = /^data:(?:image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp)|video\/(?:mpeg|mp4|ogg|webm)|audio\/(?:mp3|oga|ogg|opus));base64,[a-z0-9+/]+=*$/i;
 
-  function allowedAttribute(attr, allowedAttributeList) {
+  function allowedAttribute(attr, allowedAttributeICollection) {
     var attrName = attr.nodeName.toLowerCase();
 
-    if (allowedAttributeList.indexOf(attrName) !== -1) {
+    if (allowedAttributeICollection.indexOf(attrName) !== -1) {
       if (uriAttrs.indexOf(attrName) !== -1) {
         return Boolean(attr.nodeValue.match(SAFE_URL_PATTERN) || attr.nodeValue.match(DATA_URL_PATTERN));
       }
@@ -5255,7 +5255,7 @@
       return true;
     }
 
-    var regExp = allowedAttributeList.filter(function (attrRegex) {
+    var regExp = allowedAttributeICollection.filter(function (attrRegex) {
       return attrRegex instanceof RegExp;
     }); // Check if a regular expression validates the attribute.
 
@@ -5268,7 +5268,7 @@
     return false;
   }
 
-  function sanitizeHtml(unsafeHtml, whiteList, sanitizeFn) {
+  function sanitizeHtml(unsafeHtml, whiteICollection, sanitizeFn) {
     if (unsafeHtml.length === 0) {
       return unsafeHtml;
     }
@@ -5279,22 +5279,22 @@
 
     var domParser = new window.DOMParser();
     var createdDocument = domParser.parseFromString(unsafeHtml, 'text/html');
-    var whitelistKeys = Object.keys(whiteList);
+    var whiteICollectionKeys = Object.keys(whiteICollection);
     var elements = [].slice.call(createdDocument.body.querySelectorAll('*'));
 
     var _loop = function _loop(i, len) {
       var el = elements[i];
       var elName = el.nodeName.toLowerCase();
 
-      if (whitelistKeys.indexOf(el.nodeName.toLowerCase()) === -1) {
+      if (whiteICollectionKeys.indexOf(el.nodeName.toLowerCase()) === -1) {
         el.parentNode.removeChild(el);
         return "continue";
       }
 
-      var attributeList = [].slice.call(el.attributes);
-      var whitelistedAttributes = [].concat(whiteList['*'] || [], whiteList[elName] || []);
-      attributeList.forEach(function (attr) {
-        if (!allowedAttribute(attr, whitelistedAttributes)) {
+      var attributeICollection = [].slice.call(el.attributes);
+      var whiteICollectionedAttributes = [].concat(whiteICollection['*'] || [], whiteICollection[elName] || []);
+      attributeICollection.forEach(function (attr) {
+        if (!allowedAttribute(attr, whiteICollectionedAttributes)) {
           el.removeAttribute(attr.nodeName);
         }
       });
@@ -5322,7 +5322,7 @@
   var JQUERY_NO_CONFLICT$6 = $.fn[NAME$6];
   var CLASS_PREFIX = 'bs-tooltip';
   var BSCLS_PREFIX_REGEX = new RegExp("(^|\\s)" + CLASS_PREFIX + "\\S+", 'g');
-  var DISALLOWED_ATTRIBUTES = ['sanitize', 'whiteList', 'sanitizeFn'];
+  var DISALLOWED_ATTRIBUTES = ['sanitize', 'whiteICollection', 'sanitizeFn'];
   var DefaultType$4 = {
     animation: 'boolean',
     template: 'string',
@@ -5338,7 +5338,7 @@
     boundary: '(string|element)',
     sanitize: 'boolean',
     sanitizeFn: '(null|function)',
-    whiteList: 'object'
+    whiteICollection: 'object'
   };
   var AttachmentMap$1 = {
     AUTO: 'auto',
@@ -5362,7 +5362,7 @@
     boundary: 'scrollParent',
     sanitize: true,
     sanitizeFn: null,
-    whiteList: DefaultWhitelist
+    whiteICollection: DefaultWhiteICollection
   };
   var HoverState = {
     SHOW: 'show',
@@ -5425,7 +5425,7 @@
       this.config = this._getConfig(config);
       this.tip = null;
 
-      this._setListeners();
+      this._setICollectioneners();
     } // Getters
 
 
@@ -5568,7 +5568,7 @@
           }
         });
         $(tip).addClass(ClassName$6.SHOW); // If this is a touch-enabled device we add extra
-        // empty mouseover listeners to the body's immediate children;
+        // empty mouseover ICollectioneners to the body's immediate children;
         // only needed because of broken event delegation on iOS
         // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
 
@@ -5632,7 +5632,7 @@
       }
 
       $(tip).removeClass(ClassName$6.SHOW); // If this is a touch-enabled device we remove the extra
-      // empty mouseover listeners we added for iOS support
+      // empty mouseover ICollectioneners we added for iOS support
 
       if ('ontouchstart' in document.documentElement) {
         $(document.body).children().off('mouseover', null, $.noop);
@@ -5694,7 +5694,7 @@
 
       if (this.config.html) {
         if (this.config.sanitize) {
-          content = sanitizeHtml(content, this.config.whiteList, this.config.sanitizeFn);
+          content = sanitizeHtml(content, this.config.whiteICollection, this.config.sanitizeFn);
         }
 
         $element.html(content);
@@ -5747,7 +5747,7 @@
       return AttachmentMap$1[placement.toUpperCase()];
     };
 
-    _proto._setListeners = function _setListeners() {
+    _proto._setICollectioneners = function _setICollectioneners() {
       var _this4 = this;
 
       var triggers = this.config.trigger.split(' ');
@@ -5893,7 +5893,7 @@
       Util.typeCheckConfig(NAME$6, config, this.constructor.DefaultType);
 
       if (config.sanitize) {
-        config.template = sanitizeHtml(config.template, config.whiteList, config.sanitizeFn);
+        config.template = sanitizeHtml(config.template, config.whiteICollection, config.sanitizeFn);
       }
 
       return config;
@@ -6248,10 +6248,10 @@
   var Selector$8 = {
     DATA_SPY: '[data-spy="scroll"]',
     ACTIVE: '.active',
-    NAV_LIST_GROUP: '.nav, .list-group',
+    NAV_ICollection_GROUP: '.nav, .ICollection-group',
     NAV_LINKS: '.nav-link',
     NAV_ITEMS: '.nav-item',
-    LIST_ITEMS: '.list-group-item',
+    ICollection_ITEMS: '.ICollection-group-item',
     DROPDOWN: '.dropdown',
     DROPDOWN_ITEMS: '.dropdown-item',
     DROPDOWN_TOGGLE: '.dropdown-toggle'
@@ -6276,7 +6276,7 @@
       this._element = element;
       this._scrollElement = element.tagName === 'BODY' ? window : element;
       this._config = this._getConfig(config);
-      this._selector = this._config.target + " " + Selector$8.NAV_LINKS + "," + (this._config.target + " " + Selector$8.LIST_ITEMS + ",") + (this._config.target + " " + Selector$8.DROPDOWN_ITEMS);
+      this._selector = this._config.target + " " + Selector$8.NAV_LINKS + "," + (this._config.target + " " + Selector$8.ICollection_ITEMS + ",") + (this._config.target + " " + Selector$8.DROPDOWN_ITEMS);
       this._offsets = [];
       this._targets = [];
       this._activeTarget = null;
@@ -6435,9 +6435,9 @@
         $link.addClass(ClassName$8.ACTIVE); // Set triggered links parents as active
         // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
 
-        $link.parents(Selector$8.NAV_LIST_GROUP).prev(Selector$8.NAV_LINKS + ", " + Selector$8.LIST_ITEMS).addClass(ClassName$8.ACTIVE); // Handle special case when .nav-link is inside .nav-item
+        $link.parents(Selector$8.NAV_ICollection_GROUP).prev(Selector$8.NAV_LINKS + ", " + Selector$8.ICollection_ITEMS).addClass(ClassName$8.ACTIVE); // Handle special case when .nav-link is inside .nav-item
 
-        $link.parents(Selector$8.NAV_LIST_GROUP).prev(Selector$8.NAV_ITEMS).children(Selector$8.NAV_LINKS).addClass(ClassName$8.ACTIVE);
+        $link.parents(Selector$8.NAV_ICollection_GROUP).prev(Selector$8.NAV_ITEMS).children(Selector$8.NAV_LINKS).addClass(ClassName$8.ACTIVE);
       }
 
       $(this._scrollElement).trigger(Event$8.ACTIVATE, {
@@ -6447,9 +6447,9 @@
 
     _proto._clear = function _clear() {
       [].slice.call(document.querySelectorAll(this._selector)).filter(function (node) {
-        return node.classList.contains(ClassName$8.ACTIVE);
+        return node.classICollection.contains(ClassName$8.ACTIVE);
       }).forEach(function (node) {
-        return node.classList.remove(ClassName$8.ACTIVE);
+        return node.classICollection.remove(ClassName$8.ACTIVE);
       });
     } // Static
     ;
@@ -6548,10 +6548,10 @@
   };
   var Selector$9 = {
     DROPDOWN: '.dropdown',
-    NAV_LIST_GROUP: '.nav, .list-group',
+    NAV_ICollection_GROUP: '.nav, .ICollection-group',
     ACTIVE: '.active',
     ACTIVE_UL: '> li > .active',
-    DATA_TOGGLE: '[data-toggle="tab"], [data-toggle="pill"], [data-toggle="list"]',
+    DATA_TOGGLE: '[data-toggle="tab"], [data-toggle="pill"], [data-toggle="ICollection"]',
     DROPDOWN_TOGGLE: '.dropdown-toggle',
     DROPDOWN_ACTIVE_CHILD: '> .dropdown-menu .active'
     /**
@@ -6582,12 +6582,12 @@
 
       var target;
       var previous;
-      var listElement = $(this._element).closest(Selector$9.NAV_LIST_GROUP)[0];
+      var ICollectionElement = $(this._element).closest(Selector$9.NAV_ICollection_GROUP)[0];
       var selector = Util.getSelectorFromElement(this._element);
 
-      if (listElement) {
-        var itemSelector = listElement.nodeName === 'UL' || listElement.nodeName === 'OL' ? Selector$9.ACTIVE_UL : Selector$9.ACTIVE;
-        previous = $.makeArray($(listElement).find(itemSelector));
+      if (ICollectionElement) {
+        var itemSelector = ICollectionElement.nodeName === 'UL' || ICollectionElement.nodeName === 'OL' ? Selector$9.ACTIVE_UL : Selector$9.ACTIVE;
+        previous = $.makeArray($(ICollectionElement).find(itemSelector));
         previous = previous[previous.length - 1];
       }
 
@@ -6612,7 +6612,7 @@
         target = document.querySelector(selector);
       }
 
-      this._activate(this._element, listElement);
+      this._activate(this._element, ICollectionElement);
 
       var complete = function complete() {
         var hiddenEvent = $.Event(Event$9.HIDDEN, {
@@ -6679,16 +6679,16 @@
 
       Util.reflow(element);
 
-      if (element.classList.contains(ClassName$9.FADE)) {
-        element.classList.add(ClassName$9.SHOW);
+      if (element.classICollection.contains(ClassName$9.FADE)) {
+        element.classICollection.add(ClassName$9.SHOW);
       }
 
       if (element.parentNode && $(element.parentNode).hasClass(ClassName$9.DROPDOWN_MENU)) {
         var dropdownElement = $(element).closest(Selector$9.DROPDOWN)[0];
 
         if (dropdownElement) {
-          var dropdownToggleList = [].slice.call(dropdownElement.querySelectorAll(Selector$9.DROPDOWN_TOGGLE));
-          $(dropdownToggleList).addClass(ClassName$9.ACTIVE);
+          var dropdownToggleICollection = [].slice.call(dropdownElement.querySelectorAll(Selector$9.DROPDOWN_TOGGLE));
+          $(dropdownToggleICollection).addClass(ClassName$9.ACTIVE);
         }
 
         element.setAttribute('aria-expanded', true);
@@ -6807,7 +6807,7 @@
       this._config = this._getConfig(config);
       this._timeout = null;
 
-      this._setListeners();
+      this._setICollectioneners();
     } // Getters
 
 
@@ -6820,13 +6820,13 @@
       $(this._element).trigger(Event$a.SHOW);
 
       if (this._config.animation) {
-        this._element.classList.add(ClassName$a.FADE);
+        this._element.classICollection.add(ClassName$a.FADE);
       }
 
       var complete = function complete() {
-        _this._element.classList.remove(ClassName$a.SHOWING);
+        _this._element.classICollection.remove(ClassName$a.SHOWING);
 
-        _this._element.classList.add(ClassName$a.SHOW);
+        _this._element.classICollection.add(ClassName$a.SHOW);
 
         $(_this._element).trigger(Event$a.SHOWN);
 
@@ -6835,9 +6835,9 @@
         }
       };
 
-      this._element.classList.remove(ClassName$a.HIDE);
+      this._element.classICollection.remove(ClassName$a.HIDE);
 
-      this._element.classList.add(ClassName$a.SHOWING);
+      this._element.classICollection.add(ClassName$a.SHOWING);
 
       if (this._config.animation) {
         var transitionDuration = Util.getTransitionDurationFromElement(this._element);
@@ -6850,7 +6850,7 @@
     _proto.hide = function hide(withoutTimeout) {
       var _this2 = this;
 
-      if (!this._element.classList.contains(ClassName$a.SHOW)) {
+      if (!this._element.classICollection.contains(ClassName$a.SHOW)) {
         return;
       }
 
@@ -6869,8 +6869,8 @@
       clearTimeout(this._timeout);
       this._timeout = null;
 
-      if (this._element.classList.contains(ClassName$a.SHOW)) {
-        this._element.classList.remove(ClassName$a.SHOW);
+      if (this._element.classICollection.contains(ClassName$a.SHOW)) {
+        this._element.classICollection.remove(ClassName$a.SHOW);
       }
 
       $(this._element).off(Event$a.CLICK_DISMISS);
@@ -6886,7 +6886,7 @@
       return config;
     };
 
-    _proto._setListeners = function _setListeners() {
+    _proto._setICollectioneners = function _setICollectioneners() {
       var _this3 = this;
 
       $(this._element).on(Event$a.CLICK_DISMISS, Selector$a.DATA_DISMISS, function () {
@@ -6898,12 +6898,12 @@
       var _this4 = this;
 
       var complete = function complete() {
-        _this4._element.classList.add(ClassName$a.HIDE);
+        _this4._element.classICollection.add(ClassName$a.HIDE);
 
         $(_this4._element).trigger(Event$a.HIDDEN);
       };
 
-      this._element.classList.remove(ClassName$a.SHOW);
+      this._element.classICollection.remove(ClassName$a.SHOW);
 
       if (this._config.animation) {
         var transitionDuration = Util.getTransitionDurationFromElement(this._element);

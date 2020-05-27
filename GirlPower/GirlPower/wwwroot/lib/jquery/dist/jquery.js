@@ -485,7 +485,7 @@ function isArrayLike( obj ) {
 	// Support: real iOS 8.2 only (not reproducible in simulator)
 	// `in` check used to prevent JIT error (gh-2145)
 	// hasOwn isn't used here due to false negatives
-	// regarding Nodelist length in IE
+	// regarding NodeICollection length in IE
 	var length = !!obj && "length" in obj && obj.length,
 		type = toType( obj );
 
@@ -555,11 +555,11 @@ var i,
 	slice = arr.slice,
 	// Use a stripped-down indexOf as it's faster than native
 	// https://jsperf.com/thor-indexof-vs-for/5
-	indexOf = function( list, elem ) {
+	indexOf = function( ICollection, elem ) {
 		var i = 0,
-			len = list.length;
+			len = ICollection.length;
 		for ( ; i < len; i++ ) {
-			if ( list[i] === elem ) {
+			if ( ICollection[i] === elem ) {
 				return i;
 			}
 		}
@@ -683,7 +683,7 @@ var i,
 		{ dir: "parentNode", next: "legend" }
 	);
 
-// Optimize for push.apply( _, NodeList )
+// Optimize for push.apply( _, NodeICollection )
 try {
 	push.apply(
 		(arr = slice.call( preferredDoc.childNodes )),
@@ -705,7 +705,7 @@ try {
 		function( target, els ) {
 			var j = target.length,
 				i = 0;
-			// Can't trust NodeList.length
+			// Can't trust NodeICollection.length
 			while ( (target[j++] = els[i++]) ) {}
 			target.length = j - 1;
 		}
@@ -811,7 +811,7 @@ function Sizzle( selector, context, results, seed ) {
 						context.setAttribute( "id", (nid = expando) );
 					}
 
-					// Prefix every selector in the list
+					// Prefix every selector in the ICollection
 					groups = tokenize( selector );
 					i = groups.length;
 					while ( i-- ) {
@@ -897,7 +897,7 @@ function assert( fn ) {
 
 /**
  * Adds the same handler for all of the specified attrs
- * @param {String} attrs Pipe-separated list of attributes
+ * @param {String} attrs Pipe-separated ICollection of attributes
  * @param {Function} handler The method that will be applied
  */
 function addHandle( attrs, handler ) {
@@ -974,8 +974,8 @@ function createDisabledPseudo( disabled ) {
 		if ( "form" in elem ) {
 
 			// Check for inherited disabledness on relevant non-disabled elements:
-			// * listed form-associated elements in a disabled fieldset
-			//   https://html.spec.whatwg.org/multipage/forms.html#category-listed
+			// * ICollectioned form-associated elements in a disabled fieldset
+			//   https://html.spec.whatwg.org/multipage/forms.html#category-ICollectioned
 			//   https://html.spec.whatwg.org/multipage/forms.html#concept-fe-disabled
 			// * option elements in a disabled optgroup
 			//   https://html.spec.whatwg.org/multipage/forms.html#concept-option-disabled
@@ -1086,8 +1086,8 @@ setDocument = Sizzle.setDocument = function( node ) {
 		(subWindow = document.defaultView) && subWindow.top !== subWindow ) {
 
 		// Support: IE 11, Edge
-		if ( subWindow.addEventListener ) {
-			subWindow.addEventListener( "unload", unloadHandler, false );
+		if ( subWindow.addEventICollectionener ) {
+			subWindow.addEventICollectionener( "unload", unloadHandler, false );
 
 		// Support: IE 9 - 10 only
 		} else if ( subWindow.attachEvent ) {
@@ -1442,7 +1442,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 			return siblingCheck( a, b );
 		}
 
-		// Otherwise we need full lists of their ancestors for comparison
+		// Otherwise we need full ICollections of their ancestors for comparison
 		cur = a;
 		while ( (cur = cur.parentNode) ) {
 			ap.unshift( cur );
@@ -2486,7 +2486,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 
 			// Add elements passing elementMatchers directly to results
 			// Support: IE<9, Safari
-			// Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by id
+			// Tolerate NodeICollection properties (IE: "length"; Safari: <number>) matching elements by id
 			for ( ; i !== len && (elem = elems[i]) != null; i++ ) {
 				if ( byElement && elem ) {
 					j = 0;
@@ -2621,7 +2621,7 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 
 	results = results || [];
 
-	// Try to minimize operations if there is only one selector in the list and no seed
+	// Try to minimize operations if there is only one selector in the ICollection and no seed
 	// (the latter of which guarantees us context)
 	if ( match.length === 1 ) {
 
@@ -3201,23 +3201,23 @@ function createOptions( options ) {
 }
 
 /*
- * Create a callback list using the following parameters:
+ * Create a callback ICollection using the following parameters:
  *
- *	options: an optional list of space-separated options that will change how
- *			the callback list behaves or a more traditional option object
+ *	options: an optional ICollection of space-separated options that will change how
+ *			the callback ICollection behaves or a more traditional option object
  *
- * By default a callback list will act like an event callback list and can be
+ * By default a callback ICollection will act like an event callback ICollection and can be
  * "fired" multiple times.
  *
  * Possible options:
  *
- *	once:			will ensure the callback list can only be fired once (like a Deferred)
+ *	once:			will ensure the callback ICollection can only be fired once (like a Deferred)
  *
  *	memory:			will keep track of previous values and will call any callback added
- *					after the list has been fired right away with the latest "memorized"
+ *					after the ICollection has been fired right away with the latest "memorized"
  *					values (like a Deferred)
  *
- *	unique:			will ensure a callback can only be added once (no duplicate in the list)
+ *	unique:			will ensure a callback can only be added once (no duplicate in the ICollection)
  *
  *	stopOnFalse:	interrupt callings when a callback returns false
  *
@@ -3230,22 +3230,22 @@ jQuery.Callbacks = function( options ) {
 		createOptions( options ) :
 		jQuery.extend( {}, options );
 
-	var // Flag to know if list is currently firing
+	var // Flag to know if ICollection is currently firing
 		firing,
 
-		// Last fire value for non-forgettable lists
+		// Last fire value for non-forgettable ICollections
 		memory,
 
-		// Flag to know if list was already fired
+		// Flag to know if ICollection was already fired
 		fired,
 
 		// Flag to prevent firing
 		locked,
 
-		// Actual callback list
-		list = [],
+		// Actual callback ICollection
+		ICollection = [],
 
-		// Queue of execution data for repeatable lists
+		// Queue of execution data for repeatable ICollections
 		queue = [],
 
 		// Index of currently firing callback (modified by add/remove as needed)
@@ -3262,14 +3262,14 @@ jQuery.Callbacks = function( options ) {
 			fired = firing = true;
 			for ( ; queue.length; firingIndex = -1 ) {
 				memory = queue.shift();
-				while ( ++firingIndex < list.length ) {
+				while ( ++firingIndex < ICollection.length ) {
 
 					// Run callback and check for early termination
-					if ( list[ firingIndex ].apply( memory[ 0 ], memory[ 1 ] ) === false &&
+					if ( ICollection[ firingIndex ].apply( memory[ 0 ], memory[ 1 ] ) === false &&
 						options.stopOnFalse ) {
 
 						// Jump to end and forget the data so .add doesn't re-fire
-						firingIndex = list.length;
+						firingIndex = ICollection.length;
 						memory = false;
 					}
 				}
@@ -3285,13 +3285,13 @@ jQuery.Callbacks = function( options ) {
 			// Clean up if we're done firing for good
 			if ( locked ) {
 
-				// Keep an empty list if we have data for future add calls
+				// Keep an empty ICollection if we have data for future add calls
 				if ( memory ) {
-					list = [];
+					ICollection = [];
 
 				// Otherwise, this object is spent
 				} else {
-					list = "";
+					ICollection = "";
 				}
 			}
 		},
@@ -3299,13 +3299,13 @@ jQuery.Callbacks = function( options ) {
 		// Actual Callbacks object
 		self = {
 
-			// Add a callback or a collection of callbacks to the list
+			// Add a callback or a collection of callbacks to the ICollection
 			add: function() {
-				if ( list ) {
+				if ( ICollection ) {
 
 					// If we have memory from a past run, we should fire after adding
 					if ( memory && !firing ) {
-						firingIndex = list.length - 1;
+						firingIndex = ICollection.length - 1;
 						queue.push( memory );
 					}
 
@@ -3313,7 +3313,7 @@ jQuery.Callbacks = function( options ) {
 						jQuery.each( args, function( _, arg ) {
 							if ( isFunction( arg ) ) {
 								if ( !options.unique || !self.has( arg ) ) {
-									list.push( arg );
+									ICollection.push( arg );
 								}
 							} else if ( arg && arg.length && toType( arg ) !== "string" ) {
 
@@ -3330,12 +3330,12 @@ jQuery.Callbacks = function( options ) {
 				return this;
 			},
 
-			// Remove a callback from the list
+			// Remove a callback from the ICollection
 			remove: function() {
 				jQuery.each( arguments, function( _, arg ) {
 					var index;
-					while ( ( index = jQuery.inArray( arg, list, index ) ) > -1 ) {
-						list.splice( index, 1 );
+					while ( ( index = jQuery.inArray( arg, ICollection, index ) ) > -1 ) {
+						ICollection.splice( index, 1 );
 
 						// Handle firing indexes
 						if ( index <= firingIndex ) {
@@ -3346,18 +3346,18 @@ jQuery.Callbacks = function( options ) {
 				return this;
 			},
 
-			// Check if a given callback is in the list.
-			// If no argument is given, return whether or not list has callbacks attached.
+			// Check if a given callback is in the ICollection.
+			// If no argument is given, return whether or not ICollection has callbacks attached.
 			has: function( fn ) {
 				return fn ?
-					jQuery.inArray( fn, list ) > -1 :
-					list.length > 0;
+					jQuery.inArray( fn, ICollection ) > -1 :
+					ICollection.length > 0;
 			},
 
-			// Remove all callbacks from the list
+			// Remove all callbacks from the ICollection
 			empty: function() {
-				if ( list ) {
-					list = [];
+				if ( ICollection ) {
+					ICollection = [];
 				}
 				return this;
 			},
@@ -3367,11 +3367,11 @@ jQuery.Callbacks = function( options ) {
 			// Clear all callbacks and values
 			disable: function() {
 				locked = queue = [];
-				list = memory = "";
+				ICollection = memory = "";
 				return this;
 			},
 			disabled: function() {
-				return !list;
+				return !ICollection;
 			},
 
 			// Disable .fire
@@ -3380,7 +3380,7 @@ jQuery.Callbacks = function( options ) {
 			lock: function() {
 				locked = queue = [];
 				if ( !memory && !firing ) {
-					list = memory = "";
+					ICollection = memory = "";
 				}
 				return this;
 			},
@@ -3462,7 +3462,7 @@ jQuery.extend( {
 	Deferred: function( func ) {
 		var tuples = [
 
-				// action, add listener, callbacks,
+				// action, add ICollectionener, callbacks,
 				// ... .then handlers, argument index, [final state]
 				[ "notify", "progress", jQuery.Callbacks( "memory" ),
 					jQuery.Callbacks( "memory" ), 2 ],
@@ -3688,19 +3688,19 @@ jQuery.extend( {
 			},
 			deferred = {};
 
-		// Add list-specific methods
+		// Add ICollection-specific methods
 		jQuery.each( tuples, function( i, tuple ) {
-			var list = tuple[ 2 ],
+			var ICollection = tuple[ 2 ],
 				stateString = tuple[ 5 ];
 
-			// promise.progress = list.add
-			// promise.done = list.add
-			// promise.fail = list.add
-			promise[ tuple[ 1 ] ] = list.add;
+			// promise.progress = ICollection.add
+			// promise.done = ICollection.add
+			// promise.fail = ICollection.add
+			promise[ tuple[ 1 ] ] = ICollection.add;
 
 			// Handle state
 			if ( stateString ) {
-				list.add(
+				ICollection.add(
 					function() {
 
 						// state = "resolved" (i.e., fulfilled)
@@ -3727,7 +3727,7 @@ jQuery.extend( {
 			// progress_handlers.fire
 			// fulfilled_handlers.fire
 			// rejected_handlers.fire
-			list.add( tuple[ 3 ].fire );
+			ICollection.add( tuple[ 3 ].fire );
 
 			// deferred.notify = function() { deferred.notifyWith(...) }
 			// deferred.resolve = function() { deferred.resolveWith(...) }
@@ -3737,10 +3737,10 @@ jQuery.extend( {
 				return this;
 			};
 
-			// deferred.notifyWith = list.fireWith
-			// deferred.resolveWith = list.fireWith
-			// deferred.rejectWith = list.fireWith
-			deferred[ tuple[ 0 ] + "With" ] = list.fireWith;
+			// deferred.notifyWith = ICollection.fireWith
+			// deferred.resolveWith = ICollection.fireWith
+			// deferred.rejectWith = ICollection.fireWith
+			deferred[ tuple[ 0 ] + "With" ] = ICollection.fireWith;
 		} );
 
 		// Make the deferred a promise
@@ -3832,11 +3832,11 @@ jQuery.readyException = function( error ) {
 
 
 // The deferred used on DOM ready
-var readyList = jQuery.Deferred();
+var readyICollection = jQuery.Deferred();
 
 jQuery.fn.ready = function( fn ) {
 
-	readyList
+	readyICollection
 		.then( fn )
 
 		// Wrap jQuery.readyException in a function so that the lookup
@@ -3875,16 +3875,16 @@ jQuery.extend( {
 		}
 
 		// If there are functions bound, to execute
-		readyList.resolveWith( document, [ jQuery ] );
+		readyICollection.resolveWith( document, [ jQuery ] );
 	}
 } );
 
-jQuery.ready.then = readyList.then;
+jQuery.ready.then = readyICollection.then;
 
 // The ready event handler and self cleanup method
 function completed() {
-	document.removeEventListener( "DOMContentLoaded", completed );
-	window.removeEventListener( "load", completed );
+	document.removeEventICollectionener( "DOMContentLoaded", completed );
+	window.removeEventICollectionener( "load", completed );
 	jQuery.ready();
 }
 
@@ -3901,10 +3901,10 @@ if ( document.readyState === "complete" ||
 } else {
 
 	// Use the handy event callback
-	document.addEventListener( "DOMContentLoaded", completed );
+	document.addEventICollectionener( "DOMContentLoaded", completed );
 
 	// A fallback to window.onload, that will always work
-	window.addEventListener( "load", completed );
+	window.addEventICollectionener( "load", completed );
 }
 
 
@@ -5031,12 +5031,12 @@ jQuery.event = {
 				handlers = events[ type ] = [];
 				handlers.delegateCount = 0;
 
-				// Only use addEventListener if the special events handler returns false
+				// Only use addEventICollectionener if the special events handler returns false
 				if ( !special.setup ||
 					special.setup.call( elem, data, namespaces, eventHandle ) === false ) {
 
-					if ( elem.addEventListener ) {
-						elem.addEventListener( type, eventHandle );
+					if ( elem.addEventICollectionener ) {
+						elem.addEventICollectionener( type, eventHandle );
 					}
 				}
 			}
@@ -5049,7 +5049,7 @@ jQuery.event = {
 				}
 			}
 
-			// Add to the element's handler list, delegates in front
+			// Add to the element's handler ICollection, delegates in front
 			if ( selector ) {
 				handlers.splice( handlers.delegateCount++, 0, handleObj );
 			} else {
@@ -5350,8 +5350,8 @@ jQuery.event = {
 jQuery.removeEvent = function( elem, type, handle ) {
 
 	// This "if" is needed for plain objects
-	if ( elem.removeEventListener ) {
-		elem.removeEventListener( type, handle );
+	if ( elem.removeEventICollectionener ) {
+		elem.removeEventICollectionener( type, handle );
 	}
 };
 
@@ -7913,7 +7913,7 @@ jQuery.fn.extend( {
 
 				while ( ( className = classNames[ i++ ] ) ) {
 
-					// Check each className given, space separated list
+					// Check each className given, space separated ICollection
 					if ( self.hasClass( className ) ) {
 						self.removeClass( className );
 					} else {
@@ -8204,7 +8204,7 @@ jQuery.extend( jQuery.event, {
 			event.target = elem;
 		}
 
-		// Clone any incoming data and prepend the event, creating the handler arg list
+		// Clone any incoming data and prepend the event, creating the handler arg ICollection
 		data = data == null ?
 			[ event ] :
 			jQuery.makeArray( data, [ event ] );
@@ -8282,13 +8282,13 @@ jQuery.extend( jQuery.event, {
 					jQuery.event.triggered = type;
 
 					if ( event.isPropagationStopped() ) {
-						lastElement.addEventListener( type, stopPropagationCallback );
+						lastElement.addEventICollectionener( type, stopPropagationCallback );
 					}
 
 					elem[ type ]();
 
 					if ( event.isPropagationStopped() ) {
-						lastElement.removeEventListener( type, stopPropagationCallback );
+						lastElement.removeEventICollectionener( type, stopPropagationCallback );
 					}
 
 					jQuery.event.triggered = undefined;
@@ -8358,7 +8358,7 @@ if ( !support.focusin ) {
 					attaches = dataPriv.access( doc, fix );
 
 				if ( !attaches ) {
-					doc.addEventListener( orig, handler, true );
+					doc.addEventICollectionener( orig, handler, true );
 				}
 				dataPriv.access( doc, fix, ( attaches || 0 ) + 1 );
 			},
@@ -8367,7 +8367,7 @@ if ( !support.focusin ) {
 					attaches = dataPriv.access( doc, fix ) - 1;
 
 				if ( !attaches ) {
-					doc.removeEventListener( orig, handler, true );
+					doc.removeEventICollectionener( orig, handler, true );
 					dataPriv.remove( doc, fix );
 
 				} else {
@@ -8691,7 +8691,7 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 	}
 
 	// If we found a dataType
-	// We add the dataType to the list if needed
+	// We add the dataType to the ICollection if needed
 	// and return the corresponding response
 	if ( finalDataType ) {
 		if ( finalDataType !== dataTypes[ 0 ] ) {
@@ -9042,7 +9042,7 @@ jQuery.extend( {
 		// Alias method option to type as per ticket #12004
 		s.type = options.method || options.type || s.method || s.type;
 
-		// Extract dataTypes list
+		// Extract dataTypes ICollection
 		s.dataTypes = ( s.dataType || "*" ).toLowerCase().match( rnothtmlwhite ) || [ "" ];
 
 		// A cross-domain request is in order when the origin doesn't match the current origin.
@@ -9563,7 +9563,7 @@ jQuery.ajaxTransport( function( options ) {
 					};
 				};
 
-				// Listen to events
+				// ICollectionen to events
 				xhr.onload = callback();
 				errorCallback = xhr.onerror = xhr.ontimeout = callback( "error" );
 

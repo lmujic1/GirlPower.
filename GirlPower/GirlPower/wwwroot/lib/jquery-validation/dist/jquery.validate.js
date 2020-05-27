@@ -120,21 +120,21 @@ $.extend( $.fn, {
 
 	// https://jqueryvalidation.org/valid/
 	valid: function() {
-		var valid, validator, errorList;
+		var valid, validator, errorICollection;
 
 		if ( $( this[ 0 ] ).is( "form" ) ) {
 			valid = this.validate().form();
 		} else {
-			errorList = [];
+			errorICollection = [];
 			valid = true;
 			validator = $( this[ 0 ].form ).validate();
 			this.each( function() {
 				valid = validator.element( this ) && valid;
 				if ( !valid ) {
-					errorList = errorList.concat( validator.errorList );
+					errorICollection = errorICollection.concat( validator.errorICollection );
 				}
 			} );
-			validator.errorList = errorList;
+			validator.errorICollection = errorICollection;
 		}
 		return valid;
 	},
@@ -516,22 +516,22 @@ $.extend( $.validator, {
 			if ( errors ) {
 				var validator = this;
 
-				// Add items to error list and map
+				// Add items to error ICollection and map
 				$.extend( this.errorMap, errors );
-				this.errorList = $.map( this.errorMap, function( message, name ) {
+				this.errorICollection = $.map( this.errorMap, function( message, name ) {
 					return {
 						message: message,
 						element: validator.findByName( name )[ 0 ]
 					};
 				} );
 
-				// Remove items from success list
-				this.successList = $.grep( this.successList, function( element ) {
+				// Remove items from success ICollection
+				this.successICollection = $.grep( this.successICollection, function( element ) {
 					return !( element.name in errors );
 				} );
 			}
 			if ( this.settings.showErrors ) {
-				this.settings.showErrors.call( this, this.errorMap, this.errorList );
+				this.settings.showErrors.call( this, this.errorMap, this.errorICollection );
 			} else {
 				this.defaultShowErrors();
 			}
@@ -602,13 +602,13 @@ $.extend( $.validator, {
 		},
 
 		size: function() {
-			return this.errorList.length;
+			return this.errorICollection.length;
 		},
 
 		focusInvalid: function() {
 			if ( this.settings.focusInvalid ) {
 				try {
-					$( this.findLastActive() || this.errorList.length && this.errorList[ 0 ].element || [] )
+					$( this.findLastActive() || this.errorICollection.length && this.errorICollection[ 0 ].element || [] )
 					.filter( ":visible" )
 					.focus()
 
@@ -623,7 +623,7 @@ $.extend( $.validator, {
 
 		findLastActive: function() {
 			var lastActive = this.lastActive;
-			return lastActive && $.grep( this.errorList, function( n ) {
+			return lastActive && $.grep( this.errorICollection, function( n ) {
 				return n.element.name === lastActive.name;
 			} ).length === 1 && lastActive;
 		},
@@ -669,8 +669,8 @@ $.extend( $.validator, {
 		},
 
 		resetInternals: function() {
-			this.successList = [];
-			this.errorList = [];
+			this.successICollection = [];
+			this.errorICollection = [];
 			this.errorMap = {};
 			this.toShow = $( [] );
 			this.toHide = $( [] );
@@ -808,7 +808,7 @@ $.extend( $.validator, {
 				return;
 			}
 			if ( this.objectLength( rules ) ) {
-				this.successList.push( element );
+				this.successICollection.push( element );
 			}
 			return true;
 		},
@@ -873,7 +873,7 @@ $.extend( $.validator, {
 		formatAndAdd: function( element, rule ) {
 			var message = this.defaultMessage( element, rule );
 
-			this.errorList.push( {
+			this.errorICollection.push( {
 				message: message,
 				element: element,
 				method: rule.method
@@ -892,19 +892,19 @@ $.extend( $.validator, {
 
 		defaultShowErrors: function() {
 			var i, elements, error;
-			for ( i = 0; this.errorList[ i ]; i++ ) {
-				error = this.errorList[ i ];
+			for ( i = 0; this.errorICollection[ i ]; i++ ) {
+				error = this.errorICollection[ i ];
 				if ( this.settings.highlight ) {
 					this.settings.highlight.call( this, error.element, this.settings.errorClass, this.settings.validClass );
 				}
 				this.showLabel( error.element, error.message );
 			}
-			if ( this.errorList.length ) {
+			if ( this.errorICollection.length ) {
 				this.toShow = this.toShow.add( this.containers );
 			}
 			if ( this.settings.success ) {
-				for ( i = 0; this.successList[ i ]; i++ ) {
-					this.showLabel( this.successList[ i ] );
+				for ( i = 0; this.successICollection[ i ]; i++ ) {
+					this.showLabel( this.successICollection[ i ] );
 				}
 			}
 			if ( this.settings.unhighlight ) {
@@ -922,7 +922,7 @@ $.extend( $.validator, {
 		},
 
 		invalidElements: function() {
-			return $( this.errorList ).map( function() {
+			return $( this.errorICollection ).map( function() {
 				return this.element;
 			} );
 		},
@@ -980,7 +980,7 @@ $.extend( $.validator, {
 						describedBy = errorID;
 					} else if ( !describedBy.match( new RegExp( "\\b" + this.escapeCssMeta( errorID ) + "\\b" ) ) ) {
 
-						// Add to end of list if not already present
+						// Add to end of ICollection if not already present
 						describedBy += " " + errorID;
 					}
 					$( element ).attr( "aria-describedby", describedBy );
@@ -1542,7 +1542,7 @@ $.extend( $.validator, {
 						validator.resetInternals();
 						validator.toHide = validator.errorsFor( element );
 						validator.formSubmitted = submitted;
-						validator.successList.push( element );
+						validator.successICollection.push( element );
 						validator.invalid[ element.name ] = false;
 						validator.showErrors();
 					} else {
