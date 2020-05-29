@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace GirlPower.Models
 {
-    interface IPrototip
+    public interface IPrototip
     {
+        public IPrototip kloniraj(string naziv, string opis, double cijena);
     }
 }

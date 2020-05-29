@@ -23,7 +23,11 @@ namespace GirlPower.Models
 
         public void dodajPoruku(Poruka poruka) { Poruke.Add(poruka); }
         public void dodajObavijest(Obavijest obavijest) { obavijesti.Add(obavijest); }
-        
 
+        public void update(Obavijest obavijest)
+        {
+            obavijesti.Add(obavijest);
+            //throw new NotImplementedException();
+        }
     }
 }

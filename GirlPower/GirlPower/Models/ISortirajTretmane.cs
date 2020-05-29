@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace GirlPower.Models
 {
-    interface ISortirajTretmane
+    public interface ISortirajTretmane
     {
+        public ICollection<Tretman> sortiraj(ICollection<Tretman> tretmani);
     }
 }

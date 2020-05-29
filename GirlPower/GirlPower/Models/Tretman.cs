@@ -14,6 +14,10 @@ namespace GirlPower.Models
         private int trajanje;
         private bool izvrsen;
 
+        public Tretman()
+        {
+        }
+
         public Tretman(string naziv, Kategorija kategorija, string opis, double cijena, int trajanje, bool izvrsen)
         {
             this.naziv = naziv;
@@ -29,7 +33,14 @@ namespace GirlPower.Models
         public double CijenaTretmana { get => cijena; set => cijena = value; }
         public int TrajanjeTretmana { get => trajanje; set => trajanje = value; }
         public bool Izvrsen { get => izvrsen; set => izvrsen = value; }
-        private string NazivTretmana { get => naziv; set=> naziv=value; }
-         
+        public string NazivTretmana { get => naziv; set=> naziv=value; }
+
+        public IPrototip kloniraj(string naziv, string opis, double cijena)
+        {
+
+            Tretman t = new Tretman(naziv,this.kategorija,opis, cijena, this.trajanje, this.izvrsen);
+            return t;
+            //throw new NotImplementedException();
+        }
     }
 }

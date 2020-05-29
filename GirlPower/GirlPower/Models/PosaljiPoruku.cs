@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace GirlPower.Models
 {
-    interface PosaljiPoruku
+    public interface PosaljiPoruku
     {
+        public void posaljiPoruku(Poruka poruka);
     }
 }

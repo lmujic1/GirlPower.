@@ -10,12 +10,17 @@ namespace GirlPower.Models
 
         public enum TipObavijesti {
             HitanSlucaj,
-                Popust}
+                Popust,
+            NoviTretman}
         private string posiljalac;
         private string primalac;
         private string porukaObavijesti;
         private DateTime datumSlanja;
         private TipObavijesti tip;
+
+        public Obavijest()
+        {
+        }
 
         public Obavijest(string posiljalac, string primalac, string porukaObavijesti, DateTime datumSlanja, TipObavijesti tip)
         {
@@ -32,6 +37,6 @@ namespace GirlPower.Models
        
         public string Posiljalac { get => posiljalac; set => posiljalac = value; }
         public string PorukaObavijesti { get => porukaObavijesti; set => porukaObavijesti = value; }
-        private TipObavijesti Tip { get => tip; set => tip = value; }
+        public TipObavijesti Tip { get => tip; set => tip = value; }
     }
 }

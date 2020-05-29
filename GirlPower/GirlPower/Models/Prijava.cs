@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace GirlPower.Models
 {
-    interface Prijava
+    public interface Prijava
     {
+        public void prijaviSe(string korisnickoIme, string lozinka);
     }
 }

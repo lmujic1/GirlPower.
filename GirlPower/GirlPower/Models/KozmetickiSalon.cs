@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 
 namespace GirlPower.Models
 {
-    public class KozmetickiSalon : IKreatorIteratora, Registracija, Prijava, HitanSlucaj, PosaljiObavijest,PosaljiPoruku,IPravaPristupa
+    public class KozmetickiSalon : IKreatorIteratora, Registracija, Prijava, HitanSlucaj, PosaljiObavijest,PosaljiPoruku, IPravaPristupa
     {
         private IteratorRezervacija iterator;
-        private ICollection<IPrototip> tretmani;
-        private ICollection<IKlijentObserver> klijenti;
+        private ICollection<IPrototip> oTretmani;
+        private ICollection<Tretman> tretmani;
+        private ICollection<IKlijentObserver> oKlijenti;
+        private ICollection<Klijent> klijenti;
         private ICollection<Rezervacija> rezervacije;
         private ICollection<Uposlenik> uposlenici;
         private ICollection<Kategorija> kategorije;
@@ -23,7 +25,9 @@ namespace GirlPower.Models
         //interfejs IPravaPristupa
         public void dodajNoviTretman(Tretman tretman)
         {
-            throw new NotImplementedException();
+            tretmani.Add(tretman);
+            obavijestiKlijete(tretman);
+            //throw new NotImplementedException();
         }
 
         public void dodajNovogUposlenika(Uposlenik uposlenik)
@@ -96,5 +100,50 @@ namespace GirlPower.Models
             }
             //throw new NotImplementedException();
         }
+
+        public void obavijestiKlijete(Tretman tretman)
+        {
+            Obavijest obavijest = new Obavijest();
+            foreach(IKlijentObserver k in oKlijenti)
+            {
+                obavijest.DatumSlanja=DateTime.Now;
+                obavijest.PorukaObavijesti = "Dodan je novi tretman " + tretman.NazivTretmana;
+                obavijest.Tip = Obavijest.TipObavijesti.NoviTretman;
+                k.update(obavijest);
+            }
+        }
+
+        public void kopirajTretman(Tretman tretman, string naziv, string opis, double cijena)
+        {
+            oTretmani.Add(tretman.kloniraj(naziv, opis, cijena));
+        }
+
+        public void registrujSe(string ime, string prezime, string korisnickoIme, string lozinka, string eMailTelefon)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void prijaviSe(string korisnickoIme, string lozinka)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void aktivirajHitanSlucaj()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void posaljiObavijest(Obavijest obavijest)
+        {
+
+            throw new NotImplementedException();
+        }
+
+        public void posaljiPoruku(Poruka poruka)
+        {
+            throw new NotImplementedException();
+        }
     }
+    
+    
 }

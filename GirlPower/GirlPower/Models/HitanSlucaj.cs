@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace GirlPower.Models
 {
-    interface HitanSlucaj
+    public interface HitanSlucaj
     {
+        public void aktivirajHitanSlucaj();
     }
 }

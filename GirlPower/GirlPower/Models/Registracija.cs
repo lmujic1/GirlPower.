@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace GirlPower.Models
 {
-    interface Registracija
+    public interface Registracija
     {
+        public void registrujSe(string ime, string prezime, string korisnickoIme, string lozinka, string eMailTelefon);
     }
 }
