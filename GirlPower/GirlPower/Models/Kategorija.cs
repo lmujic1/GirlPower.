@@ -7,7 +7,11 @@ namespace GirlPower.Models
 {
     public class Kategorija
     {
-        private string naziv;
+        string naziv;
+        int id;
+
+        
         public string NazivKategorije { get => naziv; set=>naziv=value;}
+        public int Id { get => id; set => id = value; }
     }
 }

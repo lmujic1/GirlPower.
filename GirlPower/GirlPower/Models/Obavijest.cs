@@ -7,29 +7,20 @@ namespace GirlPower.Models
 {
     public class Obavijest
     {
-
         public enum TipObavijesti {
             HitanSlucaj,
                 Popust,
             NoviTretman}
-        private string posiljalac;
-        private string primalac;
-        private string porukaObavijesti;
-        private DateTime datumSlanja;
-        private TipObavijesti tip;
 
-        public Obavijest()
-        {
-        }
+        int id;
+        string posiljalac;
+        string primalac;
+        string porukaObavijesti;
+        DateTime datumSlanja;
+        TipObavijesti tip;
 
-        public Obavijest(string posiljalac, string primalac, string porukaObavijesti, DateTime datumSlanja, TipObavijesti tip)
-        {
-            this.posiljalac = posiljalac;
-            this.primalac = primalac;
-            this.porukaObavijesti = porukaObavijesti;
-            this.datumSlanja = datumSlanja;
-            this.tip = tip;
-        }
+        
+
 
         public string Primalac { get => primalac; set => primalac = value; }
        

@@ -7,8 +7,6 @@ namespace GirlPower.Models
 {
     public class Administrator : Osoba
     {
-        public Administrator(string ime, string prezime, string korisnickoIme, string lozinka, string eMailTelefon) : base(ime, prezime, korisnickoIme, lozinka, eMailTelefon)
-        {
-        }
+       
     }
 }

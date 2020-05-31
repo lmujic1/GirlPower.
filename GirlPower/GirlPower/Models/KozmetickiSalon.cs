@@ -7,25 +7,32 @@ namespace GirlPower.Models
 {
     public class KozmetickiSalon : IKreatorIteratora, Registracija, Prijava, HitanSlucaj, PosaljiObavijest,PosaljiPoruku, IPravaPristupa
     {
-        private IteratorRezervacija iterator;
-        private ICollection<IPrototip> oTretmani;
-        private ICollection<Tretman> tretmani;
-        private ICollection<IKlijentObserver> oKlijenti;
-        private ICollection<Klijent> klijenti;
-        private ICollection<Rezervacija> rezervacije;
-        private ICollection<Uposlenik> uposlenici;
-        private ICollection<Kategorija> kategorije;
-        private KozmetickiSalon instanca;
+         
+        IteratorRezervacija iterator;
+        ICollection<IPrototip> oTretmani;
+        ICollection<Tretman> tretmani;
+        ICollection<IKlijentObserver> oKlijenti;
+        ICollection<Klijent> klijenti;
+        ICollection<Rezervacija> rezervacije;
+        ICollection<Uposlenik> uposlenici;
+        ICollection<Kategorija> kategorije;
+        private static KozmetickiSalon instanca;
 
-        private KozmetickiSalon() { }
 
         public ICollection<Uposlenik> Uposlenici { get => uposlenici; set => uposlenici = value; }
         public ICollection<Kategorija> Kategorije { get => kategorije; set => kategorije = value; }
+      
+        public IteratorRezervacija Iterator { get => iterator; set => iterator = value; }
+        public ICollection<IPrototip> OTretmani { get => oTretmani; set => oTretmani = value; }
+        public ICollection<Tretman> Tretmani { get => tretmani; set => tretmani = value; }
+        public ICollection<IKlijentObserver> OKlijenti { get => oKlijenti; set => oKlijenti = value; }
+        public ICollection<Klijent> Klijenti { get => klijenti; set => klijenti = value; }
+        public ICollection<Rezervacija> Rezervacije { get => rezervacije; set => rezervacije = value; }
 
         //interfejs IPravaPristupa
         public void dodajNoviTretman(Tretman tretman)
         {
-            tretmani.Add(tretman);
+            Tretmani.Add(tretman);
             obavijestiKlijete(tretman);
             //throw new NotImplementedException();
         }
@@ -43,10 +50,10 @@ namespace GirlPower.Models
 
         public void dodajRezervaciju(Rezervacija rezervacija)
         {
-            rezervacije.Add(rezervacija);
+            Rezervacije.Add(rezervacija);
         }
 
-        public KozmetickiSalon getInstance()
+        public static KozmetickiSalon getInstance()
         {
             if(instanca==null) instanca = new KozmetickiSalon();
             return instanca;
@@ -66,7 +73,7 @@ namespace GirlPower.Models
 
         public void obrisiRezervaciju(Rezervacija rezervacija)
         {
-            rezervacije.Remove(rezervacija);
+            Rezervacije.Remove(rezervacija);
         }
 
         public void obrisiTretman(Tretman tretman)
@@ -93,10 +100,10 @@ namespace GirlPower.Models
         public void kreirajIterator(int vrsta, ICollection<Rezervacija> rezervacije)
         {
             if (vrsta == 0) {
-                iterator = new DatumVrijemeIterator(rezervacije);
+                Iterator = new DatumVrijemeIterator(rezervacije);
             } else if(vrsta == 1)
             {
-                iterator = new UposlenikIterator(rezervacije);
+                Iterator = new UposlenikIterator(rezervacije);
             }
             //throw new NotImplementedException();
         }
@@ -104,7 +111,7 @@ namespace GirlPower.Models
         public void obavijestiKlijete(Tretman tretman)
         {
             Obavijest obavijest = new Obavijest();
-            foreach(IKlijentObserver k in oKlijenti)
+            foreach(IKlijentObserver k in OKlijenti)
             {
                 obavijest.DatumSlanja=DateTime.Now;
                 obavijest.PorukaObavijesti = "Dodan je novi tretman " + tretman.NazivTretmana;
@@ -115,7 +122,7 @@ namespace GirlPower.Models
 
         public void kopirajTretman(Tretman tretman, string naziv, string opis, double cijena)
         {
-            oTretmani.Add(tretman.kloniraj(naziv, opis, cijena));
+            OTretmani.Add(tretman.kloniraj(naziv, opis, cijena));
         }
 
         public void registrujSe(string ime, string prezime, string korisnickoIme, string lozinka, string eMailTelefon)

@@ -12,6 +12,7 @@ using GirlPower.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using GirlPower.Models;
 
 namespace GirlPower
 {
@@ -30,6 +31,10 @@ namespace GirlPower
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<GirlPowerContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
