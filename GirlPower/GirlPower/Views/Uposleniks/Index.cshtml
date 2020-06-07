@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GirlPower.Models.Klijent>
+﻿@model IEnumerable<GirlPower.Models.Uposlenik>
 
 @{
     ViewData["Title"] = "Index";
@@ -12,10 +12,6 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Registrovan)
-            </th>
-           
             <th>
                 @Html.DisplayNameFor(model => model.Ime)
             </th>
@@ -37,12 +33,6 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Registrovan)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdKlijenta)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Ime)
             </td>

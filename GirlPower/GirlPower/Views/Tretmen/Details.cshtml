@@ -1,0 +1,48 @@
+﻿@model GirlPower.Models.Tretman
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Tretman</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OpisTretmana)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OpisTretmana)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CijenaTretmana)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CijenaTretmana)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TrajanjeTretmana)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TrajanjeTretmana)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Izvrsen)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Izvrsen)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NazivTretmana)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NazivTretmana)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

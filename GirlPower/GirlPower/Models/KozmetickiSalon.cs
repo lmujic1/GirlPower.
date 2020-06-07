@@ -68,7 +68,7 @@ namespace GirlPower.Models
 
         public void obrisiKlijenta(Klijent klijent)
         {
-            throw new NotImplementedException();
+            klijenti.Remove(klijent);
         }
 
         public void obrisiRezervaciju(Rezervacija rezervacija)
@@ -78,7 +78,7 @@ namespace GirlPower.Models
 
         public void obrisiTretman(Tretman tretman)
         {
-            throw new NotImplementedException();
+            tretmani.Remove(tretman);
         }
 
         public void obrisiUposlenika(Uposlenik uposlenik)
@@ -93,7 +93,16 @@ namespace GirlPower.Models
 
         public void urediTretman(Tretman tretman)
         {
-            throw new NotImplementedException();
+            foreach(Tretman t in tretmani)
+            {
+                if(t.Id == tretman.Id)
+                {
+                    tretmani.Remove(t);
+                    break;
+                }
+            }
+
+            tretmani.Add(tretman);
         }
 
         //interfejs IKreirajIterator

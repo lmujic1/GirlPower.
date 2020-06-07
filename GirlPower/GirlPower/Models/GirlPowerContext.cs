@@ -23,6 +23,8 @@ namespace GirlPower.Models
         public DbSet<Poruka> Poruke { get; set; }
         public DbSet<Obavijest> Obavijesti{ get; set; }
 
+      
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Osoba>().ToTable("Osoba");
@@ -33,6 +35,7 @@ namespace GirlPower.Models
             modelBuilder.Entity<Tretman>().ToTable("Tretman");
             modelBuilder.Entity<Poruka>().ToTable("Poruka");
             modelBuilder.Entity<Obavijest>().ToTable("Obavijest").HasNoKey();
+           
         }
 
 
