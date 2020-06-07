@@ -1,12 +1,11 @@
 ﻿@model GirlPower.Models.Uposlenik
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Novi uposlenik";
 }
 
-<h1>Create</h1>
+<h1>@ViewData["Title"]</h1>
 
-<h4>Uposlenik</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -23,7 +22,7 @@
                 <span asp-validation-for="Prezime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="KorisnickoIme" class="control-label"></label>
+                <label asp-for="KorisnickoIme" class="control-label">Korisničko ime</label>
                 <input asp-for="KorisnickoIme" class="form-control" />
                 <span asp-validation-for="KorisnickoIme" class="text-danger"></span>
             </div>
@@ -33,18 +32,18 @@
                 <span asp-validation-for="Lozinka" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EMailTelefon" class="control-label"></label>
+                <label asp-for="EMailTelefon" class="control-label">E-Mail</label>
                 <input asp-for="EMailTelefon" class="form-control" />
                 <span asp-validation-for="EMailTelefon" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Vrati na listu uposlenika</a>
 </div>
 

@@ -8,7 +8,7 @@ namespace GirlPower.Models
     public class Rezervacija
     {
 
-        int Id;
+        int id;
         int idTretmana;
         int idUposlenika;
         int idKlijenta;
@@ -19,13 +19,13 @@ namespace GirlPower.Models
 
        
 
-        public Tretman Tretman { get => tretman; set => tretman = value; }
-        public DateTime DatumVrijeme { get => datumVrijeme; set => datumVrijeme = value; }
-        public Klijent Klijent { get => klijent; set => klijent = value; }
-        public Uposlenik Uposlenik { get => uposlenik; set => uposlenik = value; }
-        public int IdTretmana { get => idTretmana; set => idTretmana = value; }
-        public int IdUposlenika { get => idUposlenika; set => idUposlenika = value; }
-        public int IdKlijenta { get => idKlijenta; set => idKlijenta = value; }
-        public int Id1 { get => Id; set => Id = value; }
+        public Tretman Tretman { get; set; }
+        public DateTime DatumVrijeme { get; set; }
+        public Klijent Klijent { get; set; }
+        public Uposlenik Uposlenik { get; set; }
+        public int IdTretmana { get; set; }
+        public int IdUposlenika { get; set ; }
+        public int IdKlijenta { get; set; }
+        public int Id { get; set; }
     }
 }

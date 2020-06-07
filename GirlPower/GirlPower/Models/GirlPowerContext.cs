@@ -22,8 +22,7 @@ namespace GirlPower.Models
         public DbSet<Tretman> Tretmani { get; set; }
         public DbSet<Poruka> Poruke { get; set; }
         public DbSet<Obavijest> Obavijesti{ get; set; }
-
-      
+        public DbSet<Rezervacija> Rezervacije { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,7 +34,7 @@ namespace GirlPower.Models
             modelBuilder.Entity<Tretman>().ToTable("Tretman");
             modelBuilder.Entity<Poruka>().ToTable("Poruka");
             modelBuilder.Entity<Obavijest>().ToTable("Obavijest").HasNoKey();
-           
+            modelBuilder.Entity<Rezervacija>().ToTable("Rezervacija").HasNoKey();
         }
 
 
