@@ -35,7 +35,7 @@ namespace GirlPower
             services.AddDbContext<GirlPowerContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<Korisnik, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
